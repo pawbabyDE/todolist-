@@ -10,22 +10,33 @@
 </head>
 
 <body>
-    <script>
-        //window.localStorage.setItem('name','Paulina');
-        if (window.localStorage.getItem('name') === null); {
-
-            let name = window.prompt("Podaj imię: "); //popup z zapytaniem
-            window.localStorage.setItem('name', name); //zapisz imie doo localstorage
-        }
-        document.getElementById('name').innerHTML = window.localStorage.getItem('name');
-    </script>
+    
 
     <h1>Lista zadań</h1>
-    <h2>Cześć <span id="name "></span></h2>
+    <h2>Cześć <span id="name"></span></h2>
 
         <h2>Dodaj nowe zadanie:</h2>
         <input type="text" name="" id="task">
         <button onclick="addTask()">Dodaj</button>
+        <script>
+            //window.localStorage.setItem('name','Paulina');
+            if (window.localStorage.getItem('name') === null); {
+    
+                let name = window.prompt("Podaj imię: "); //popup z zapytaniem
+                window.localStorage.setItem('name', name); //zapisz imie doo localstorage 
+            }
+            document.getElementById('name').innerHTML = window.localStorage.getItem('name');
+            document.getElementById('tasklist').innerHTML = window.localStorage.getItem('task');
+    
+            function addTask() {
+                let task = document.getElementById('task').value;
+                window.localStorage.setItem('task', task);
+                window.localStorage.setItem('task', task);
+                document.getElementById('taskList').innerHTML = window.localStorage.getItem('task');
+    
+    
+            }
+        </script>
 </body>
 
 </html>
