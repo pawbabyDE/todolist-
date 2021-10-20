@@ -18,7 +18,7 @@
     <div id="taskList">
 
 
-        
+
     </div>
         <h2>Dodaj nowe zadanie:</h2>
         <input type="text" name="" id="task">
@@ -45,7 +45,14 @@
 
             function showTaskList() {
                 let taskList = JSON.parse(window.localStorage.getItem('taskList'));
-
+                let taskList = document.getElementById('taskList');
+                tasklist.innerHTML += "<ul>";
+                for(let i = 0; i < taskArray.length; i++) {
+                    htmlBuffer += "<li>"+taskArray[i]+"</li>";
+                    
+                }
+                htmlBuffer += "</ul>";
+                tskList.innerHTML = htmlBuffer;
 
 
             }
