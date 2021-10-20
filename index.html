@@ -37,6 +37,13 @@
             window.localStorage.setItem('taskList', JSON.stringify(taskList));
             document.getElementById('taskList').innerHTML = window.localStorage.getItem('taskList');
             }
+
+            function showTaskList() {
+                let taskList = JSON.parse(window.localStorage.getItem('taskList'));
+
+
+
+            }
         </script>
 </body>
 
