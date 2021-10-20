@@ -42,19 +42,19 @@
             //console.log(taskArray.length);
             let htmlBuffer = "";
             htmlBuffer += "<ul>";
-            for(let i = 0; i < taskArray.length; i++) {
-                htmlBuffer += "<li>"+taskArray[i]+"</li>";
-                htmlBuffer += "<li><button onclick=\"removetask("+i+")\">Usuń</button>";
+            for (let i = 0; i < taskArray.length; i++) {
+                htmlBuffer += "<li>" + taskArray[i] + "</li>";
+                htmlBuffer += "<li><button onclick=\"removetask(" + i + ")\">Usuń</button>";
             }
             htmlBuffer += "</ul>";
             //console.log(htmlBuffer);
             taskList.innerHTML = htmlBuffer;
         }
         function removeTask(i) {
-let taskArray = JSON.parse(window.localStorage.getItem('taskList'));
-taskArray.splice(i, 1);
-window.localStorage.setItem('taskList', JSON.stringify(taskList));
-showTaskList();
+            let taskArray = JSON.parse(window.localStorage.getItem('taskList'));
+            taskArray.splice(i, 1);
+            window.localStorage.setItem('taskList', JSON.stringify(taskList));
+            showTaskList();
 
         }
     </script>
