@@ -1,62 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Lista rzeczy do zrobienia</title>
 </head>
 
 <body>
-    
-
     <h1>Lista zadań</h1>
-    <h2>Cześć <span id="name"></span></h2>
-    <h2>Twoja zadania na dziś:</h2>
+    <h2>Cześć <span id="name"></span>, twoje zadania na dziś:</h2>
     <div id="taskList">
 
-
-
     </div>
-        <h2>Dodaj nowe zadanie:</h2>
-        <input type="text" name="" id="task">
-        <button onclick="addTask()">Dodaj</button>
-        <script>
-            //window.localStorage.setItem('name','Paulina');
-            if (window.localStorage.getItem('name') === null); {
-    
-                let name = window.prompt("Podaj imię: "); //popup z zapytaniem
-                window.localStorage.setItem('name', name); //zapisz imie doo localstorage 
-            }
-            document.getElementById('name').innerHTML = window.localStorage.getItem('name');
-        document.getElementById('taskList').innerHTML = JSON.parse(window.localStorage.getItem('taskList'));
+    <h2>Dodaj nowe zadanie:</h2>
+    <input type="text" name="" id="task">
+    <button onclick="addTask()">Dodaj</button>
+    <script>
+        //window.localStorage.setItem('name', 'Paweł'); // tak zapisujemy do magazynu
+        if (window.localStorage.getItem('name') === null) { //jesli nie ma zapisu o takim kluczu zwraca null
+            let name = window.prompt("Podaj imię: "); //wyświetl okientko z zapytaniem
+            window.localStorage.setItem('name', name); //zapisz imie do magazynu
+        }
+        document.getElementById('name').innerHTML = window.localStorage.getItem('name');
+        showTaskList();
 
         function addTask() {
             let task = document.getElementById('task').value;
             let taskList = JSON.parse(window.localStorage.getItem('taskList'));
-            if(taskList === null) taskList = Array(); //zabezpieczenie na wypadek pustej listy  
+            if (taskList === null) taskList = Array(); //zabezpieczenie na wypadek pustej listy  
             taskList.push(task);
-            console.log(taskList);
+            //console.log(taskList);
             window.localStorage.setItem('taskList', JSON.stringify(taskList));
-            document.getElementById('taskList').innerHTML = window.localStorage.getItem('taskList');
+            document.getElementById('task').value = "";
+            showTaskList();
+        }
+        function showTaskList() {
+            let taskArray = JSON.parse(window.localStorage.getItem('taskList'));
+            let taskList = document.getElementById('taskList');
+            //console.log(taskArray.length);
+            let htmlBuffer = "";
+            htmlBuffer += "<ul>";
+            for(let i = 0; i < taskArray.length; i++) {
+                htmlBuffer += "<li>"+taskArray[i]+"</li>";
             }
-
-            function showTaskList() {
-                let taskList = JSON.parse(window.localStorage.getItem('taskList'));
-                let taskList = document.getElementById('taskList');
-                tasklist.innerHTML += "<ul>";
-                for(let i = 0; i < taskArray.length; i++) {
-                    htmlBuffer += "<li>"+taskArray[i]+"</li>";
-                    
-                }
-                htmlBuffer += "</ul>";
-                tskList.innerHTML = htmlBuffer;
-
-
-            }
-        </script>
+            htmlBuffer += "</ul>";
+            //console.log(htmlBuffer);
+            taskList.innerHTML = htmlBuffer;
+        }
+    </script>
 </body>
 
 </html>
