@@ -17,7 +17,6 @@
     <h2>Dodaj nowe zadanie:</h2>
     <input type="text" name="" id="task">
     <button onclick="addTask()">Dodaj</button>
-    <button onclick="deleteTask()">Usuń</button>
     <script>
         //window.localStorage.setItem('name', 'Paweł'); // tak zapisujemy do magazynu
         if (window.localStorage.getItem('name') === null) { //jesli nie ma zapisu o takim kluczu zwraca null
@@ -30,7 +29,7 @@
         function addTask() {
             let task = document.getElementById('task').value;
             let taskList = JSON.parse(window.localStorage.getItem('taskList'));
-            if (taskList === null) taskList = Array(); //zabezpieczenie na wypadek pustej listy  
+            if (taskList === null || taskList.length == 0) taskList = Array(); //zabezpieczenie na wypadek pustej listy  
             taskList.push(task);
             //console.log(taskList);
             window.localStorage.setItem('taskList', JSON.stringify(taskList));
@@ -45,10 +44,18 @@
             htmlBuffer += "<ul>";
             for(let i = 0; i < taskArray.length; i++) {
                 htmlBuffer += "<li>"+taskArray[i]+"</li>";
+                htmlBuffer += "<li><button onclick=\"removetask("+i+")\">Usuń</button>";
             }
             htmlBuffer += "</ul>";
             //console.log(htmlBuffer);
             taskList.innerHTML = htmlBuffer;
+        }
+        function removeTask(i) {
+let taskArray = JSON.parse(window.localStorage.getItem('taskList'));
+taskArray.splice(i, 1);
+window.localStorage.setItem('taskList', JSON.stringify(taskList));
+showTaskList();
+
         }
     </script>
 </body>
