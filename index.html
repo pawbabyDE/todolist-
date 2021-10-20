@@ -26,15 +26,16 @@
                 window.localStorage.setItem('name', name); //zapisz imie doo localstorage 
             }
             document.getElementById('name').innerHTML = window.localStorage.getItem('name');
-            document.getElementById('tasklist').innerHTML = window.localStorage.getItem('task');
-    
-            function addTask() {
-                let task = document.getElementById('task').value;
-                window.localStorage.setItem('task', task);
-                window.localStorage.setItem('task', task);
-                document.getElementById('taskList').innerHTML = window.localStorage.getItem('task');
-    
-    
+        document.getElementById('taskList').innerHTML = JSON.parse(window.localStorage.getItem('taskList'));
+
+        function addTask() {
+            let task = document.getElementById('task').value;
+            let taskList = JSON.parse(window.localStorage.getItem('taskList'));
+            if(taskList === null) taskList = Array(); //zabezpieczenie na wypadek pustej listy  
+            taskList.push(task);
+            console.log(taskList);
+            window.localStorage.setItem('taskList', JSON.stringify(taskList));
+            document.getElementById('taskList').innerHTML = window.localStorage.getItem('taskList');
             }
         </script>
 </body>
